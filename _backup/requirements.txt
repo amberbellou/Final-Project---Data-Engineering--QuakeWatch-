@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pandas
+requests
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pydantic
+pandera
+prefect
+streamlit
+pytest
+httpx

@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: quakewatch
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U postgres -d quakewatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PYTHONPATH=/app
+    command: uvicorn app.api:app --host 0.0.0.0 --port 8000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports: ["8000:8000"]
+
+  dashboard:
+    build: .
+    working_dir: /app
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PYTHONPATH=/app
+    command: streamlit run app/dashboard.py --server.port 8501 --server.address 0.0.0.0
+    depends_on:
+      db:
+        condition: service_healthy
+    ports: ["8501:8501"]
+
+  flow:
+    build: .
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - USGS_FEED=${USGS_FEED}
+      - PREFECT_SLACK_WEBHOOK_URL=${PREFECT_SLACK_WEBHOOK_URL}
+      - PYTHONPATH=/app
+    command: python etl/flow.py
+    depends_on:
+      db:
+        condition: service_healthy
