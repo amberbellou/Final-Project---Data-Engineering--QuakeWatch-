@@ -107,7 +107,6 @@ Alerting system for large events
 Deployment to cloud (AWS/GCP/Azure)
 
 ## Screenshots
-
 ![QuakeWatch — top chart](docs/images/dashboard-top.png)
 
 ![QuakeWatch — map + table](docs/images/dashboard-map.png)
