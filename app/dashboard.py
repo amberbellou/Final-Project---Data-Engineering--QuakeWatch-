@@ -7,6 +7,9 @@ import streamlit as st
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.db import engine
+import os
+API_BASE = os.getenv("QW_API_BASE", "http://localhost:8000")  # default for local dev
+
 
 # --- ensure project root is on the import path ---
 import os, sys
