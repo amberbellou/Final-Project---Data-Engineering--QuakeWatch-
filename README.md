@@ -68,24 +68,24 @@ The system is made up of three main parts:
 ## 📂 Project Structure
 
 quakewatch/
-├─ app/
-│ ├─ api.py # FastAPI endpoints
-│ ├─ dashboard.py # Streamlit dashboard
-│ ├─ db.py # DB connection
-│ └─ models.py # ORM models
-├─ etl/
-│ ├─ extract.py # Data extraction logic
-│ ├─ transform.py # Data cleaning
-│ ├─ load.py # Load into DB
-│ └─ flow.py # ETL orchestration
-├─ tests/
-│ ├─ test_transform.py # Unit tests for transforms
-│ └─ test_api.py # Unit tests for API
-├─ docker-compose.yml # Multi-service setup
-├─ Dockerfile # API/Dashboard container
-├─ requirements.txt # Python dependencies
-├─ README.md # Project documentation
-└─ .env.example # Sample environment config
+├── app/ # API & Dashboard code
+│ ├── api.py # FastAPI endpoints
+│ ├── dashboard.py # Streamlit dashboard
+│ ├── db.py # DB connection
+│ └── models.py # ORM models
+├── etl/ # ETL pipeline code
+│ ├── extract.py # Data extraction logic
+│ ├── transform.py # Data cleaning
+│ ├── load.py # Load data into DB
+│ └── flow.py # ETL orchestration
+├── tests/ # Unit tests
+│ ├── test_transform.py # Tests for transforms
+│ └── test_api.py # Tests for API
+├── docker-compose.yml # Multi-service setup
+├── Dockerfile # API/Dashboard container
+├── requirements.txt # Python dependencies
+├── README.md # Project documentation
+└── .env.example # Sample environment config
 
 ---
 

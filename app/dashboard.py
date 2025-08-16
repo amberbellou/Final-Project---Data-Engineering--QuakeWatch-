@@ -14,6 +14,15 @@ st.title("🌍 QuakeWatch Dashboard")
 MIN_MAG = st.sidebar.slider("Minimum magnitude", -1.0, 10.0, 4.0, 0.1)
 LIMIT   = st.sidebar.slider("Rows (events)", 50, 2000, 500, 50)
 
+ # --- ensure project root is on the import path ---
+import os, sys
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+# --------------------------------------------------
+
+from app.db import engine
+
 # ---- DB health + last updated ----
 with Session(engine) as s:
     last_ts = s.execute(text("SELECT max(time_utc) FROM fact_event")).scalar()
@@ -61,12 +70,5 @@ if not events_df.empty:
     st.dataframe(events_df)
 else:
     st.info("No events yet. Try running the ETL.")
-    # --- ensure project root is on the import path ---
-import os, sys
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if ROOT not in sys.path:
-    sys.path.insert(0, ROOT)
-# --------------------------------------------------
-
-from app.db import engine
+   
 
