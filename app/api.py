@@ -1,31 +1,34 @@
+# app/api.py
 from typing import List, Optional
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from sqlalchemy import func, literal, desc, text, select
+from sqlalchemy import func, literal, text, select
 from sqlalchemy.orm import Session
 
 from app.db import engine
 from app.models import FactEvent, DimPlace, DimMagType
 
+
 # ---------- FastAPI app ----------
 app = FastAPI(title="QuakeWatch API", version="0.1.0")
 
-# CORS (safe default for a local dashboard; tighten in prod)
+# CORS (safe defaults for local; tighten in prod)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # change to specific origins for production
+    allow_origins=["*"],  # in production, set explicit origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
 # ---------- Response models ----------
 class EventOut(BaseModel):
     event_id: str
-    time_utc: Optional[str]
+    time_utc: Optional[str]          # ISO string
     magnitude: Optional[float]
     mag_type: Optional[str]
     lat: Optional[float]
@@ -33,12 +36,15 @@ class EventOut(BaseModel):
     depth_km: Optional[float]
     place: Optional[str]
 
+
 class CountryStat(BaseModel):
     country: str
     events: int
 
+
 class HealthOut(BaseModel):
     ok: bool
+
 
 # ---------- Routes ----------
 @app.get("/events", response_model=List[EventOut], tags=["default"])
@@ -51,11 +57,11 @@ def events(
     with Session(engine) as s:
         q = (
             s.query(FactEvent, DimPlace, DimMagType)
-             .join(DimPlace, FactEvent.place_id == DimPlace.place_id, isouter=True)
-             .join(DimMagType, FactEvent.mag_type_id == DimMagType.mag_type_id, isouter=True)
-             .filter(FactEvent.magnitude >= min_mag, FactEvent.magnitude <= max_mag)
-             .order_by(FactEvent.time_utc.desc())
-             .limit(limit)
+            .join(DimPlace, FactEvent.place_id == DimPlace.place_id, isouter=True)
+            .join(DimMagType, FactEvent.mag_type_id == DimMagType.mag_type_id, isouter=True)
+            .filter(FactEvent.magnitude >= min_mag, FactEvent.magnitude <= max_mag)
+            .order_by(FactEvent.time_utc.desc())
+            .limit(limit)
         )
         rows = q.all()
 
@@ -72,6 +78,7 @@ def events(
         }
         for e, p, m in rows
     ]
+
 
 @app.get("/stats/by-country", response_model=List[CountryStat], tags=["default"])
 def stats_by_country(min_mag: float = Query(4.0, ge=-1.0, le=12.0)):
@@ -97,10 +104,10 @@ def stats_by_country(min_mag: float = Query(4.0, ge=-1.0, le=12.0)):
 
     return [{"country": c, "events": int(n)} for (c, n) in rows]
 
+
 @app.get("/health", response_model=HealthOut, tags=["default"])
 def health():
     """Simple DB liveness check."""
     with Session(engine) as s:
         s.execute(text("SELECT 1"))
     return {"ok": True}
-
