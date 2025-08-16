@@ -8,6 +8,22 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.db import engine
 
+# --- ensure project root is on the import path ---
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # ../
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+# --------------------------------------------------
+
+# Try DB; if unavailable (e.g., Streamlit Cloud without a DB), fall back to API-only mode
+engine = None
+try:
+    from app.db import engine as _engine
+    engine = _engine
+except Exception:
+    pass
+
+
 st.set_page_config(page_title="QuakeWatch", layout="wide")
 st.title("🌍 QuakeWatch Dashboard")
 
