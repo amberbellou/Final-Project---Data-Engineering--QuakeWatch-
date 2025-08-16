@@ -4,6 +4,23 @@ QuakeWatch is a data engineering project that ingests, processes, and visualizes
 It fetches seismic event data, stores it in a PostgreSQL database, exposes it via a FastAPI service, and provides an interactive Streamlit dashboard for exploration.
 
 ---
+📖 Project Overview
+QuakeWatch is a real-time earthquake monitoring system that collects, processes, and visualizes global seismic activity. The goal is to provide a clean, structured dataset and a live dashboard for researchers, analysts, and the public to track earthquakes as they happen.
+The system automatically fetches earthquake event data from reliable sources, processes it through a custom ETL (Extract, Transform, Load) pipeline, stores it in a database, and serves it through a modern API. A separate dashboard application presents this data with interactive charts, tables, and maps to make trends and recent activity easy to explore.
+🔧 How I Built It
+This project was designed from scratch with modularity and scalability in mind:
+Data Extraction – A Python ETL script retrieves raw earthquake event data from external APIs.
+Transformation – The raw feed is cleaned, enriched (e.g., adding country info), and structured for analytics.
+Loading – The processed data is stored in a PostgreSQL database for persistence and querying.
+API Layer – A FastAPI service exposes REST endpoints so other applications can access clean earthquake data.
+Dashboard – A Streamlit app visualizes real-time stats, including recent events, magnitude distributions, and country-by-country breakdowns.
+Containerization – Docker Compose orchestrates the ETL, API, and dashboard for easy local or cloud deployment.
+🎯 Purpose and Use Cases
+QuakeWatch is useful for:
+Researchers studying seismic trends over time.
+Governments and disaster-response teams monitoring earthquake activity.
+Educators and students learning about seismology and data pipelines.
+Anyone curious about real-time global earthquake activity.
 
 ## 📌 Overview
 
