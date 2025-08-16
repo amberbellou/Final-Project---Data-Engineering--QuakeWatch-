@@ -61,4 +61,12 @@ if not events_df.empty:
     st.dataframe(events_df)
 else:
     st.info("No events yet. Try running the ETL.")
+    # --- ensure project root is on the import path ---
+import os, sys
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+# --------------------------------------------------
+
+from app.db import engine
 
