@@ -5,37 +5,44 @@
     <title>Earthquake Events</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
             background-color: #f9f9f9;
         }
         h1 {
             text-align: center;
+            color: #333;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            margin-top: 30px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         th, td {
-            border: 1px solid #ccc;
-            padding: 0.5rem;
-            text-align: left;
+            padding: 12px 15px;
+            border: 1px solid #eee;
         }
         th {
-            background-color: #eee;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
         }
     </style>
 </head>
 <body>
-    <h1>Recent Earthquake Events</h1>
-    <table>
+    <h1>Earthquake Events</h1>
+    <table id="eventsTable">
         <thead>
             <tr>
-                <th>Time (UTC)</th>
-                <th>Magnitude</th>
-                <th>Place</th>
-                <th>Depth (km)</th>
+                <th onclick="sortTable(0)">Time</th>
+                <th onclick="sortTable(1)">Magnitude</th>
+                <th onclick="sortTable(2)">Location</th>
+                <th onclick="sortTable(3)">Depth (km)</th>
             </tr>
         </thead>
         <tbody>
@@ -49,5 +56,35 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        function sortTable(n) {
+            const table = document.getElementById("eventsTable");
+            let switching = true, shouldSwitch, i, x, y, dir = "asc", switchcount = 0;
+            while (switching) {
+                switching = false;
+                const rows = table.rows;
+                for (i = 1; i < rows.length - 1; i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    let cmpX = isNaN(parseFloat(x.innerHTML)) ? x.innerHTML.toLowerCase() : parseFloat(x.innerHTML);
+                    let cmpY = isNaN(parseFloat(y.innerHTML)) ? y.innerHTML.toLowerCase() : parseFloat(y.innerHTML);
+                    if ((dir === "asc" && cmpX > cmpY) || (dir === "desc" && cmpX < cmpY)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else if (switchcount === 0 && dir === "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
