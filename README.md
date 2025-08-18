@@ -1,7 +1,8 @@
-# 🌍 QuakeWatch — Real-time Earthquake Data Pipeline & Dashboard
+🌍 QuakeWatch: Real-time Earthquake Data Pipeline and Dashboard
 
-QuakeWatch is a data engineering project that ingests, processes, and visualizes earthquake data in near real time.  
-It fetches seismic event data from the **USGS Earthquake API**, processes and validates it, stores it in a database, exposes it via a **FastAPI service**, and provides an interactive **Streamlit dashboard** for exploration.
+QuakeWatch is a project I built to bring earthquake data to life in a way that is both useful and easy to explore. Every few hours the system goes out to the USGS Earthquake API, which publishes seismic activity from around the world in real time. Instead of leaving the data as raw messy JSON, QuakeWatch cleans it up, validates it, and organizes it into a structured format that can actually be analyzed. The cleaned data is then stored in a database so that past events are not lost and researchers or curious users can look at historical trends alongside the newest quakes.
+From there I wanted to make the data easy to access and visualize. That is why I built a FastAPI service that exposes earthquake information through a set of endpoints anyone can use, whether that is to grab raw numbers, check a health status, or fetch detailed statistics by country. On top of the API I created a Streamlit dashboard that turns the numbers into interactive maps, charts, and tables. You can see the biggest quakes of the day, explore which countries are most affected, or watch how magnitudes have changed over time.
+What makes QuakeWatch special is that it runs automatically. I set up an ETL pipeline that updates every six hours so the dashboard and API are always up to date without me needing to manually trigger anything. That means it is not just a class demo, it is a small but complete data system that shows how real world pipelines are designed from extraction all the way to visualization.
 
 ---
 
