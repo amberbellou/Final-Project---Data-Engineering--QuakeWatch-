@@ -1,31 +1,31 @@
 # app/db.py
-
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# Read DB URL from environment or default to local Postgres
+# --- Read & normalize DB URL ---
 DATABASE_URL = os.getenv(
-    "DATABASE_URL", "postgresql+psycopg2://postgres:postgres@localhost:5432/quakewatch"
+    "DATABASE_URL",
+    "postgresql+psycopg2://postgres:postgres@localhost:5432/quakewatch",
 )
 
-# Create SQLAlchemy engine
+# Some providers hand out postgres://; SQLAlchemy needs postgresql://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+# --- Engine / Session / Base ---
 engine = create_engine(
     DATABASE_URL,
-    pool_pre_ping=True,
-    future=True,
-    echo=False  # Set to True for SQL logging during development
+    pool_pre_ping=True,   # avoids stale connections
+    future=True,          # SQLAlchemy 2.0 style
+    echo=False,           # flip to True locally to debug SQL
 )
 
-# Create sessionmaker factory
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False, future=True)
-
-# Base class for ORM models
 Base = declarative_base()
 
-# Optional: Session dependency (for FastAPI or scripts)
-def get_db():
-    """Dependency to get a new DB session (for FastAPI or scripts)."""
+# --- FastAPI dependency (name matches imports in api.py) ---
+def get_session():
     db = SessionLocal()
     try:
         yield db
