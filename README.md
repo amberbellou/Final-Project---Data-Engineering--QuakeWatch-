@@ -32,28 +32,29 @@ QuakeWatch is useful for:
 
 ---
 
-## 📌 System Architecture
+## 📌 System Overview
 
-### 1. ETL Pipeline
-- **Extract**: Pulls earthquake event data from the USGS feed.  
-- **Transform**: Cleans and validates the data (e.g., country parsing, Pandera schema checks).  
-- **Load**: Stores processed events into a local **SQLite database** (PostgreSQL ready).  
+1. **ETL Pipeline**
+   - **Extract**: Pulls earthquake data from the USGS API  
+   - **Transform**: Cleans and structures the data (adds country/region, fixes types)  
+   - **Load**: Stores processed events into a database  
 
-### 2. API (FastAPI)
-- REST endpoints for:
-  - Recent earthquake events  
-  - Statistics by country  
-  - Service health checks  
-- Auto-documented with Swagger UI at **`/docs`**.  
+2. **API (FastAPI)**
+   - Serves structured earthquake data  
+   - Endpoints for:
+     - Recent earthquake events
+     - Stats by country
+     - Health checks
+   - Fully documented with Swagger UI at `/docs`  
 
-### 3. Dashboard (Streamlit)
-- Interactive web app for real-time insights.  
-- Includes:
-  - 🌎 Map of events  
-  - 📊 Magnitude timeline  
-  - 📋 Recent events table  
-  - 🏆 Top countries by quake count  
-  - Filters for magnitude thresholds and row limits.  
+3. **Dashboard (Streamlit)**
+   - Interactive dashboard with:
+     - Country-by-country counts
+     - Recent events table
+     - Magnitude timeline
+     - World map of events
+   - Adjustable filters  
+
 
 ---
 
