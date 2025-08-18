@@ -14,6 +14,14 @@ The pipeline runs automatically every **6 hours** to keep the data fresh.
 This project was designed to demonstrate a full ETL lifecycle, automation with cron, and modern visualization techniques.
 
 ---
+## 🔧 How I Built It
+
+- **Extraction** – Python script retrieves raw earthquake data from the USGS API.  
+- **Transformation** – Data is cleaned, enriched (e.g., extracting country info), validated with [Pandera](https://pandera.readthedocs.io/), and structured for analytics.  
+- **Loading** – Transformed events are stored in a SQL database.  
+- **API Layer** – [FastAPI](https://fastapi.tiangolo.com/) service exposes REST endpoints.  
+- **Dashboard** – [Streamlit](https://streamlit.io/) visualizes live earthquake data with maps, charts, and filters.  
+- **Automation** – The ETL runs every 6 hours via a scheduled cron job.  
 
 ## 🎯 Purpose and Use Cases
 QuakeWatch is useful for:
