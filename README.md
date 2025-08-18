@@ -14,6 +14,26 @@ The goal is to provide a clean, structured dataset and a live dashboard for rese
 The pipeline runs automatically every **6 hours** to keep the data fresh.  
 This project was designed to demonstrate a full ETL lifecycle, automation with cron, and modern visualization techniques.
 
+## 🏗 Architecture (How It Works)
+
+QuakeWatch is organized into three core layers:
+ETL Pipeline (Extract, Transform, Load)
+Extracts raw earthquake events from the USGS feed.
+Transforms and validates the data using Pandas and Pandera.
+Loads the events into a relational database (SQLite locally, PostgreSQL in deployment).
+API (FastAPI)
+Serves clean earthquake data directly from the database.
+Provides endpoints for recent events, country-level statistics, and health checks.
+Includes interactive documentation via Swagger UI at /docs.
+Dashboard (Streamlit)
+Interactive web application for exploring seismic activity.
+Features include:
+Recent earthquake tables with filtering.
+Magnitude distribution over time.
+A map view for global visualization.
+Adjustable filters for minimum magnitude and number of rows.
+Together, these parts form a complete pipeline: raw data goes in, structured insights come out, and both developers and non-technical users can explore earthquakes in ways that would otherwise require digging through complex JSON feeds.
+
 ---
 ## 🔧 How I Built It
 
