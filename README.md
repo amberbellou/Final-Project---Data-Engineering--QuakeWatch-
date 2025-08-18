@@ -67,31 +67,57 @@ QuakeWatch is useful for:
 ## 📂 Project Structure
 
 Final-Project---Data-Engineering--QuakeWatch-/
+
 ├── app/ # API & Dashboard code
+
 │ ├── api.py # FastAPI service
+
 │ ├── dashboard.py # Streamlit dashboard
+
 │ ├── db.py # Database connection
+
 │ └── models.py # ORM models
+
 │
+
 ├── etl/ # ETL pipeline code
+
 │ ├── extract.py # Fetch data
+
 │ ├── transform.py # Clean & validate
+
 │ ├── load.py # Load into DB
+
 │ └── flow.py # Orchestration
+
 │
+
 ├── templates/ # HTML templates
+
 │ └── events.html
+
 │
+
 ├── tests/ # Unit tests
+
 │ ├── test_api.py
+
 │ └── test_transform.py
+
 │
+
 ├── requirements.txt # Python dependencies
+
 ├── docker-compose.yml # Optional multi-service setup
+
 ├── Makefile # Automation commands
+
 ├── local.db # Local SQLite DB
+
 ├── etl_cron.log # Logs from cron runs
+
 └── README.md # Documentation
+
 
 
 ---
@@ -157,6 +183,8 @@ curl -s "http://localhost:8001/events.json?min_mag=4&limit=3" | jq .
 
 # Stats by country
 curl -s "http://localhost:8001/stats/by-country?min_mag=5" | jq .
+
+#
 
 ✅ Features
 
