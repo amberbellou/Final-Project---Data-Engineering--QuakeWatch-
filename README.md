@@ -121,29 +121,28 @@ Final-Project---Data-Engineering--QuakeWatch-/
 
 
 ---
-
 ## 📸 Screenshots
 
 ### API Swagger UI
-![QuakeWatch API Docs](https://github.com/user-attachments/assets/1d7a759b-3974-46f2-a732-4177036abb84)
-
-### Dashboard – Top Countries by Quake Count
-![Dashboard by Country](https://github.com/user-attachments/assets/a969d52e-0cf2-4e91-893e-b82236c418f2)
-
-### Dashboard – Recent Trends
-![Recent Trends](https://github.com/user-attachments/assets/66908318-8de1-431b-b511-ec1235d3dc2d)
-
-### Dashboard – World Map
-![Global Map](https://github.com/user-attachments/assets/193a7068-ffc5-4082-88ec-d6de095ecf22)
+![Swagger UI](https://github.com/user-attachments/assets/ee5f71e5-c78d-4d51-95a9-3486f1ba38d0)
 
 ### API Health Check
-![Health Check](https://github.com/user-attachments/assets/ee5f71e5-c78d-4d51-95a9-3486f1ba38d0)
+![Health Check](https://github.com/user-attachments/assets/5cd99f0c-d48a-4821-ad54-0a706c6aa363)
 
 ### JSON Events Endpoint
 ![Events JSON](https://github.com/user-attachments/assets/937d4601-32ea-4fe0-8769-efca7817af55)
 
 ### Stats by Country Endpoint
-![Stats by Country](https://github.com/user-attachments/assets/5cd99f0c-d48a-4821-ad54-0a706c6aa363)
+![Stats by Country](https://github.com/user-attachments/assets/193a7068-ffc5-4082-88ec-d6de095ecf22)
+
+### Dashboard – Top Countries by Quake Count
+![Dashboard by Country](https://github.com/user-attachments/assets/1d7a759b-3974-46f2-a732-4177036abb84)
+
+### Dashboard – Recent Trends
+![Recent Trends](https://github.com/user-attachments/assets/a969d52e-0cf2-4e91-893e-b82236c418f2)
+
+### Dashboard – World Map
+![Global Map](https://github.com/user-attachments/assets/66908318-8de1-431b-b511-ec1235d3dc2d)
 
 ---
 
