@@ -10,7 +10,7 @@ from sqlalchemy import func, literal, text, select
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.db import engine
+from app.db import get_session, Base, engine   # use the shared session + engine
 from app.models import FactEvent, DimPlace, DimMagType
 
 app = FastAPI(title="QuakeWatch API", version="0.1.0")
@@ -25,10 +25,17 @@ app.add_middleware(
 
 templates = Jinja2Templates(directory="app/templates")
 
-def get_session():
-    with Session(engine) as session:
-        yield session
+# Ensure tables exist on cold DBs (prevents first-hit errors)
+@app.on_event("startup")
+def _startup():
+    Base.metadata.create_all(bind=engine)
 
+# Root sanity check
+@app.get("/")
+def root():
+    return {"status": "ok", "docs": "/docs"}
+
+# -------------------- Schemas --------------------
 class EventOut(BaseModel):
     event_id: str
     time_utc: Optional[str]
@@ -46,13 +53,14 @@ class CountryStat(BaseModel):
 class HealthOut(BaseModel):
     ok: bool
 
+# -------------------- Routes --------------------
 @app.get("/events", response_class=HTMLResponse)
 def events_html(
     request: Request,
     min_mag: float = Query(0.0, ge=-1.0, le=12.0),
     max_mag: float = Query(10.0, ge=-1.0, le=12.0),
     limit: int = Query(100, ge=1, le=2000),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     try:
         q = (
@@ -86,7 +94,7 @@ def events_json(
     min_mag: float = Query(0.0, ge=-1.0, le=12.0),
     max_mag: float = Query(10.0, ge=-1.0, le=12.0),
     limit: int = Query(100, ge=1, le=2000),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     try:
         q = (
@@ -117,7 +125,7 @@ def events_json(
 @app.get("/stats/by-country", response_model=List[CountryStat])
 def stats_by_country(
     min_mag: float = Query(4.0, ge=-1.0, le=12.0),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     try:
         unknown = literal("Unknown")
