@@ -88,6 +88,47 @@ quakewatch/
 └── .env.example # Sample environment config
 
 ---
+## Screenshots
+
+### API Swagger UI
+Here’s the auto-generated API documentation that lets you test endpoints directly.
+![QuakeWatch API Docs](https://github.com/user-attachments/assets/1d7a759b-3974-46f2-a732-4177036abb84)
+
+---
+
+### Dashboard – Top Countries by Quake Count
+The dashboard displays the countries with the highest earthquake counts in the dataset.
+![Dashboard by Country](https://github.com/user-attachments/assets/a969d52e-0cf2-4e91-893e-b82236c418f2)
+
+---
+
+### Dashboard – Recent Trends
+A line chart showing recent earthquake magnitudes over time.
+![Recent Trends](https://github.com/user-attachments/assets/66908318-8de1-431b-b511-ec1235d3dc2d)
+
+---
+
+### Dashboard – World Map
+Earthquake events plotted on an interactive map.
+![Global Map](https://github.com/user-attachments/assets/193a7068-ffc5-4082-88ec-d6de095ecf22)
+
+---
+
+### API Health Check
+A simple endpoint to confirm the API is running.
+![Health Check](https://github.com/user-attachments/assets/ee5f71e5-c78d-4d51-95a9-3486f1ba38d0)
+
+---
+
+### JSON Events Endpoint
+Raw JSON response with recent earthquake data.
+![Events JSON](https://github.com/user-attachments/assets/937d4601-32ea-4fe0-8769-efca7817af55)
+
+---
+
+### Stats by Country Endpoint
+Aggregated counts of earthquakes by country.
+![Stats by Country](https://github.com/user-attachments/assets/5cd99f0c-d48a-4821-ad54-0a706c6aa363)
 
 ## 🚀 How to Run Locally
 
@@ -124,17 +165,4 @@ Alerting system for large events
 Deployment to cloud (AWS/GCP/Azure)
 👩‍💻 Author
 Developed by Amber Bellou
-
-![Image 8-17-25 at 11 49 PM](https://github.com/user-attachments/assets/1d7a759b-3974-46f2-a732-4177036abb84)
-
-![Image 8-17-25 at 11 49 PM (1)](https://github.com/user-attachments/assets/a969d52e-0cf2-4e91-893e-b82236c418f2)
-
-![Image 8-17-25 at 11 50 PM](https://github.com/user-attachments/assets/66908318-8de1-431b-b511-ec1235d3dc2d)
-
-![Image 8-17-25 at 11 48 PM](https://github.com/user-attachments/assets/193a7068-ffc5-4082-88ec-d6de095ecf22)
-
-![Image 8-17-25 at 11 43 PM](https://github.com/user-attachments/assets/ee5f71e5-c78d-4d51-95a9-3486f1ba38d0)
-
-![Image 8-17-25 at 11 47 PM](https://github.com/user-attachments/assets/937d4601-32ea-4fe0-8769-efca7817af55)
-![Image 8-17-25 at 11 44 PM](https://github.com/user-attachments/assets/5cd99f0c-d48a-4821-ad54-0a706c6aa363)
 
