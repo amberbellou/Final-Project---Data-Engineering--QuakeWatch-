@@ -78,57 +78,51 @@ QuakeWatch is useful for:
 
 Final-Project---Data-Engineering--QuakeWatch-/
 
-├── app/ # API & Dashboard code
+├── app/                # API & Dashboard code
 
-│ ├── api.py # FastAPI service
+│   ├── api.py          # FastAPI service
 
-│ ├── dashboard.py # Streamlit dashboard
+│   ├── dashboard.py    # Streamlit dashboard
 
-│ ├── db.py # Database connection
+│   ├── db.py           # Database connection
 
-│ └── models.py # ORM models
-
-│
-
-├── etl/ # ETL pipeline code
-
-│ ├── extract.py # Fetch data
-
-│ ├── transform.py # Clean & validate
-
-│ ├── load.py # Load into DB
-
-│ └── flow.py # Orchestration
+│   └── models.py       # ORM models
 
 │
+├── etl/                # ETL pipeline
 
-├── templates/ # HTML templates
+│   ├── extract.py      # Fetch earthquake data
 
-│ └── events.html
+│   ├── transform.py    # Clean & validate
 
-│
+│   ├── load.py         # Load into DB
 
-├── tests/ # Unit tests
-
-│ ├── test_api.py
-
-│ └── test_transform.py
+│   └── flow.py         # Orchestrated ETL
 
 │
+├── templates/          # HTML templates
 
-├── requirements.txt # Python dependencies
+│   └── events.html
 
-├── docker-compose.yml # Optional multi-service setup
+│
+├── tests/              # Unit tests
 
-├── Makefile # Automation commands
+│   ├── test_api.py
 
-├── local.db # Local SQLite DB
+│   └── test_transform.py
 
-├── etl_cron.log # Logs from cron runs
+│
+├── requirements.txt    # Python dependencies
 
-└── README.md # Documentation
+├── docker-compose.yml  # Optional multi-service setup
 
+├── Makefile            # Automation commands
 
+├── local.db            # SQLite database
+
+├── etl_cron.log        # Logs from scheduled runs
+
+└── README.md           # Documentation
 
 ---
 ## 📸 Screenshots
