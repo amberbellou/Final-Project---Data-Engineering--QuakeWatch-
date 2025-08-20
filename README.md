@@ -15,11 +15,17 @@ The pipeline runs automatically every **6 hours** to keep the data fresh.
 This project was designed to demonstrate a full ETL lifecycle, automation with cron, and modern visualization techniques.
 
 The main purpose of QuakeWatch is to demonstrate how a real-world ETL pipeline can be designed and deployed from scratch. Instead of just a one-off script, this project brings together multiple tools and techniques from data engineering:
+
 Data Extraction – Pulls earthquake event data directly from the USGS Earthquake API in GeoJSON format.
+
 Transformation – Cleans the feed, converts timestamps, normalizes fields, and enriches the data by extracting region and country names from raw place strings. Data is validated with Pandera to ensure consistency.
+
 Loading – Stores the transformed data in a relational database for persistence and analysis.
+
 API Layer – A FastAPI service exposes earthquake data as JSON endpoints, making it accessible to other apps or services.
+
 Dashboard – A Streamlit web app visualizes earthquakes with charts, tables, and maps, designed for interactive exploration.
+
 Automation – The pipeline is scheduled with cron to run every six hours, ensuring data stays up to date.
 
 ## 🏗 Architecture (How It Works)
