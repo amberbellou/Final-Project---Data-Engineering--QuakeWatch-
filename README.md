@@ -1,3 +1,7 @@
+> **Scope note:** This repository is only for the QuakeWatch data engineering project. Personal portfolio/resume websites should be kept in a separate project/repository.
+
+> **External site note:** The standalone personal website is maintained outside this repo (for example `/workspace/ambrine-bellou-website`) and should center your cognitive security mission: educating people (especially youth, elderly communities, and AI professionals) on protecting their minds, avoiding AI anthropomorphism, and protecting personal data online.
+
 ## 🌍 QuakeWatch: Real-time Earthquake Data Pipeline and Dashboard
 
 QuakeWatch is a project I built to bring earthquake data to life in a way that is both useful and easy to explore. Every few hours the system goes out to the USGS Earthquake API, which publishes seismic activity from around the world in real time. Instead of leaving the data as raw messy JSON, QuakeWatch cleans it up, validates it, and organizes it into a structured format that can actually be analyzed. The cleaned data is then stored in a database so that past events are not lost and researchers or curious users can look at historical trends alongside the newest quakes.
